@@ -1,0 +1,152 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    background: #a9b4c7;
+    color: #514B43;
+    font-family: 'Courier Prime', monospace;
+}
+
+.container {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    overflow: hidden;
+}
+
+
+.header {
+    text-align: center;
+    z-index: 3;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+.buttonPlay {
+    z-index: 3;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+#playMusic {
+    font-family: inherit;
+    font-size: 15px;
+    color: #514B43;
+    background: #E8E2D8;
+    border: 1px solid #CFC6B9;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#playMusic:hover {
+    background: #DDD4C7;
+}
+
+
+.container.playing .header,
+.container.playing .buttonPlay {
+    opacity: 0;
+    transform: translateY(-15px);
+    pointer-events: none;
+}
+
+
+.pict {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(70vw, 350px);
+    max-height: 55vh;
+    object-fit: contain;
+    opacity: 0;
+    z-index: 1;
+    box-shadow: 0 5px 18px rgba(65, 55, 45, 0.12);
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.container.playing .pict {
+    opacity: 1;
+    transition-delay: 1s;
+}
+
+.lyrics-container {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 2;
+}
+
+
+.bubble {
+    position: absolute;
+    top: 0;
+    max-width: 300px;
+    padding: 12px 18px;
+
+    background: #FAF8F2;
+    color: #514B43;
+    border: 1px solid #E5DED3;
+    border-radius: 0;
+
+    font-family: 'Courier Prime', monospace;
+    font-size: 25px;
+    text-align: center;
+    line-height: 1.4;
+    font-weight: bolder;
+
+    box-shadow: 2px 3px 9px rgba(65, 55, 45, 0.10);
+
+    animation: floatUp 13s linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-120vh);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .header h2 {
+        font-size: 23px;
+    }
+
+    .bubble {
+        max-width: 220px;
+        font-size: 21px;
+        padding: 10px 14px;
+    }
+}
